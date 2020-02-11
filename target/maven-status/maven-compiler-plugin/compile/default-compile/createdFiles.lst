@@ -1,1 +1,7 @@
+com/example/myorder/entities/Restaurant.class
+com/example/myorder/api/controllers/RestaurantController.class
+com/example/myorder/config/SwaggerConfig.class
+com/example/myorder/repositories/RestaurantRepository.class
+com/example/myorder/services/RestaurantService.class
 com/example/myorder/MyOrderApplication.class
+com/example/myorder/api/controllers/RestPath.class
