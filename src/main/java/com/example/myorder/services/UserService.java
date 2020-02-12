@@ -4,6 +4,7 @@ import com.example.myorder.api.dtos.CreateUserDto;
 import com.example.myorder.api.dtos.UserResponseDto;
 import com.example.myorder.api.mappers.UserMapper;
 import com.example.myorder.entities.User;
+import com.example.myorder.exceptions.AlreadyExistsException;
 import com.example.myorder.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,28 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserResponseDto create(CreateUserDto createUserDto) {
-    }
-    
-    private User saveUser(User user) {
-        return userRepository.save(user);
+            validateUserEmail(createUserDto.getEmail());
+            User user = userRepository.save(createUser(createUserDto));
+
+            return UserMapper.toResponseDto(user);
     }
 
+    private User createUser(CreateUserDto createUserDto) {
+        return new User()
+                .setEmail(createUserDto.getEmail())
+                .setName(createUserDto.getName())
+                .setPhone(createUserDto.getPhone())
+                .setPassword(createUserDto.getPassword())
+                .setAddress(createUserDto.getAddress());
+    }
+
+    private void validateUserEmail(String email) {
+        User user = userRepository.findByEmail(email);
+
+        if(user != null) {
+            throw new AlreadyExistsException("Já existe um usuário cadastrado com esse email");
+
+        }
+    }
 
 }

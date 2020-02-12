@@ -1,7 +1,10 @@
 package com.example.myorder.entities;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -22,6 +25,18 @@ public class User {
     @Column(name = "EMAIL", nullable = false)
     @Email
     private String email;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public User setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    @Column
+    private String address;
 
     @Column(name = "PASSWROD", nullable = false)
     private String password;
