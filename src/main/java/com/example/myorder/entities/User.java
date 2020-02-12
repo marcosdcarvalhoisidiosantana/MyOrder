@@ -5,13 +5,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "RESTAURANT")
-public class Restaurant {
+@Table(name = "USUARIO")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
 
     @Column(name = "NAME", nullable = false)
     private String name;
@@ -24,11 +23,14 @@ public class Restaurant {
     @Email
     private String email;
 
+    @Column(name = "PASSWROD", nullable = false)
+    private String password;
+
     public Integer getId() {
         return id;
     }
 
-    public Restaurant setId(Integer id) {
+    public User setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -37,7 +39,7 @@ public class Restaurant {
         return name;
     }
 
-    public Restaurant setName(String name) {
+    public User setName(String name) {
         this.name = name;
         return this;
     }
@@ -46,7 +48,7 @@ public class Restaurant {
         return phone;
     }
 
-    public Restaurant setPhone(String phone) {
+    public User setPhone(String phone) {
         this.phone = phone;
         return this;
     }
@@ -55,8 +57,18 @@ public class Restaurant {
         return email;
     }
 
-    public Restaurant setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
         return this;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
 }
