@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController("RestaurantControllerV1")
 @RequestMapping(RestPath.BASE_PATH + "/restaurant")
@@ -32,4 +33,5 @@ public class RestaurantController {
     public RestaurantResponseDto get(@RequestParam @Param("id") Integer id) {
         return restaurantService.getById(id);
     }
+
 }
